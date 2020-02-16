@@ -9,7 +9,7 @@ typedef struct node
 	struct node *next;
 }Node; 
 Node* CreatLinklist(int number);
-void StarToKill(Node*head,int number);
+void StarToKill(Node*head,int number,int count);
 int main()
 {	int number=0;
 	int count=0;
@@ -18,7 +18,7 @@ int main()
 	printf("Count:\n");
 	scanf("%d",&count);
 	Node *head=CreatLinklist(number);
-	StarToKill(head,number);
+	StarToKill(head,number,count);
 	return 0;
 }
 
@@ -44,7 +44,7 @@ Node* CreatLinklist(int number)
 	return head;
  }
  
-void StarToKill(Node*head,int number)  //É±ÈË 
+void StarToKill(Node*head,int number,int count)  //É±ÈË 
 {	Node *q=NULL;
 	Node *p=head;
 	Node *last=head;
@@ -54,7 +54,7 @@ void StarToKill(Node*head,int number)  //É±ÈË
 	int i;
 	int cnt =0;
 	for (i=1;p->next&&cnt<number-1;i++)		 
-	{	if (i==5)
+	{	if (i==count)
 		{	printf("Kill:%d\n",p->value);
 			q->next=p->next;
 			free(p);
