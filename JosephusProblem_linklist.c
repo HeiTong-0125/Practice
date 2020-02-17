@@ -4,7 +4,7 @@ N个人围成一圈，从第一个开始报数，第M个将被杀掉，
 例如 N=6，M=5，被杀掉的顺序是：5，4，6，2，3，1。*/
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct node 
+typedef struct node 	//定义结点类型 
 {	int value;
 	struct node *next;
 }Node; 
@@ -41,20 +41,19 @@ Node* CreatLinklist(int number)
 		}
 		else{head=p;} 
 	}
+	//连接第一个结点和最后一个结点，创建循环链表 
+	last=last->next;
+	last->next=head; 
 	return head;
  }
  
 void StarToKill(Node*head,int number,int count)  //杀人 
 {	Node *q=NULL;
 	Node *p=head;
-	Node *last=head;
-	while(last->next)
-	{ last=last->next;}
-	last->next=head;
 	int i;
 	int cnt =0;
-	for (i=1;p->next&&cnt<number-1;i++)		 
-	{	if (i==count)
+	for (i=1;p->next&&cnt<number-1;i++)		 //循环链表，每count个结点，删除一个结点 
+	{	if (i==count)							//并将该结点的前一个和后一个连接 
 		{	printf("Kill:%d\n",p->value);
 			q->next=p->next;
 			free(p);
